@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Train;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,23 +20,24 @@ class TrainsTableSeeder extends Seeder
     {
         DB::table('trains')->truncate();
 
-        for ($i = 0; $i < 25; $i++)
+        for ($i = 0; $i < 100; $i++) {
 
             $table = new Train();
 
-        $table->company = $faker->company();
-        $table->departure_station = $faker->city();
-        $table->arrival_station = $faker->city();
-        $table->departure_time = $faker->dateTimeBetween('-1 days', '+1 days');
-        $table->arrival_time = Carbon::parse($table->departure_time)->addHours(rand(1, 5));
-        $table->train_code = $faker->bothify('#@#@@');
-        $table->vagons = $faker->randomDigit();
-        $table->on_time = $faker->boolean();
-        $table->cancelled = $faker->boolean();
+            $table->company = $faker->company();
+            $table->departure_station = $faker->city();
+            $table->arrival_station = $faker->city();
+            $table->departure_time = $faker->dateTimeBetween('-1 days', '+1 days');
+            $table->arrival_time = Carbon::parse($table->departure_time)->addHours(rand(1, 5));
+            $table->train_code = $faker->bothify('11###');
+            $table->vagons = $faker->randomDigit();
+            $table->on_time = $faker->boolean();
+            $table->cancelled = $faker->boolean();
 
 
 
-        $table->save();
+            $table->save();
+        }
     }
 }
 
